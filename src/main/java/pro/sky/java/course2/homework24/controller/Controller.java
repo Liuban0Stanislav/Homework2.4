@@ -11,19 +11,10 @@ public class Controller {
     @GetMapping
     @ResponseBody
     public String showSiteName(){
-        return "<strong>Калькулятор</strong>" +
-                "<br>вторая строка</br>";
+        return "<strong>Калькулятор</strong>";
     }
     @GetMapping("/calc")
-    public String calculator(@RequestParam(required = false) Integer num1,
-                             @RequestParam(required = false) Integer num2,
-                             @RequestParam(required = false) char mathSign){
-        CalculatorService cs = new CalculatorService();
-        if(num2 == 0 || num1 == 0){
-            return "<strong>деление на 0 невозможно</strong>";
-        }
-        StringBuilder sb = new StringBuilder();
-        sb.append(num1 + "" + mathSign + "" + num2 + " = " + cs.calcRequest(num1, num2, mathSign));
-        return "<strong>Результат</strong>" + "<br><strong>" + sb + "</strong></br>";
+    public String calculator(@RequestParam String args){
+       return CalculatorService.getResult(args);
     }
 }
