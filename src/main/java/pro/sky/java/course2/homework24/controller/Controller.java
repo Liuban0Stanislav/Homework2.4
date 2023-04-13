@@ -8,7 +8,12 @@ import java.text.DecimalFormat;
 @RestController
 @RequestMapping("/calculator")
 public class Controller {
-    CalculatorService cs = new CalculatorService();
+//    CalculatorService cs = new CalculatorService();
+    CalculatorService cs;
+
+    public Controller(CalculatorService cs) {
+        this.cs = cs;
+    }
 
     @GetMapping()
     public String calculator(){
